@@ -347,7 +347,7 @@
           const max    = data.players?.max    ?? 20;
           playersText.textContent = `${online} / ${max} players`;
 
-          versionCell.textContent = data.version ?? 'Paper 1.21.1';
+          versionCell.textContent = data.version?.name_clean ?? 'Paper 1.21.1';
           ipCell.textContent      = SERVER_ADDRESS;
         } else {
           statusText.textContent = 'Offline';
