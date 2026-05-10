@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Crews SMP</title>
+  <title>Indian Fellas SMP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -270,8 +270,8 @@
       </div>
     </div>
 
-    <h1 class="title">The Crews SMP</h1>
-    <p class="subtitle">A vanilla Minecraft SMP kept alive by the community.</p>
+    <h1 class="title">Indian Fellas SMP</h1>
+    <p class="subtitle">A vanilla Indian Minecraft SMP kept alive by the community.</p>
 
     <div class="badges">
       <span class="badge badge-green" id="status-badge">
@@ -314,7 +314,7 @@
 
     <hr />
 
-    <a class="renew-btn" href="https://game4free.net/allmyfellassmp" target="_blank" rel="noopener">
+    <a class="renew-btn" href="https://game4free.net/indianfellassmp" target="_blank" rel="noopener">
       <span class="btn-icon">&#x21BB;</span>
       Renew Server
     </a>
@@ -324,7 +324,7 @@
 
   <script>
     // ── CONFIG ── Replace with your actual server address ──
-    const SERVER_ADDRESS = 'thecrewssmp.game4free.net';
+    const SERVER_ADDRESS = 'indianfellassmp.game4free.net';
 
     const statusBadge  = document.getElementById('status-badge');
     const statusDot    = document.getElementById('status-dot');
@@ -342,7 +342,7 @@
     async function fetchStatus() {
       try {
         const res = await fetch(`https://api.mcstatus.io/v2/status/java/${SERVER_ADDRESS}`, {
-          headers: { 'User-Agent': 'TheCrewsSMP-GithubPage/1.0' }
+          headers: { 'User-Agent': 'IndianFellasSMP-GithubPage/1.0' }
         });
         const data = await res.json();
 
