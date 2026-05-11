@@ -231,6 +231,38 @@
 
     .btn-icon { font-size: 18px; }
 
+    /* ── Button row ── */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-row .renew-btn { flex: 1; }
+
+    /* ── Refresh button ── */
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 16px;
+      background: #1a2840;
+      color: #c8d8f0;
+      border: 1px solid #2d4260;
+      border-bottom: 4px solid #0f1a2e;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background .15s, transform .1s;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .refresh-btn:hover  { background: #243450; }
+    .refresh-btn:active { border-bottom-width: 2px; transform: translateY(2px); }
+    .refresh-btn.spinning { animation: spin .6s linear; }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
     /* ── Footer note ── */
     .footer {
       font-size: 11px;
@@ -300,24 +332,25 @@
         <div class="info-label">Last checked</div>
         <div class="info-value" id="time-cell">—</div>
       </div>
-    </div>
-
       <div class="info-cell">
         <div class="info-label">Bedrock IP</div>
         <div class="info-value">138.201.48.55</div>
-    </div>
-        <div class="info-cell">
+      </div>
+      <div class="info-cell">
         <div class="info-label">Bedrock Port</div>
         <div class="info-value">25825</div>
+      </div>
     </div>
-    
 
     <hr />
 
-    <a class="renew-btn" href="https://game4free.net/indianfellassmp" target="_blank" rel="noopener">
-      <span class="btn-icon">&#x21BB;</span>
-      Renew Server
-    </a>
+    <div class="btn-row">
+      <button class="refresh-btn" id="refresh-btn" title="Refresh server status">&#x21BB;</button>
+      <a class="renew-btn" href="https://game4free.net/indianfellassmp" target="_blank" rel="noopener">
+        <span class="btn-icon">&#x21BB;</span>
+        Renew Server
+      </a>
+    </div>
 
     <p class="footer">For Discord Members only &middot; by pressing the renewal button, you start up the server, if not you help extend the server's uptime! </p>
   </div>
@@ -381,8 +414,21 @@
     }
 
     fetchStatus();
-    // Refresh every 5 minutes (API caches for 5 min anyway)
+    // Refresh every 1 minute
     setInterval(fetchStatus, 60 * 1000);
+
+    // Manual refresh button
+    const refreshBtn = document.getElementById('refresh-btn');
+    refreshBtn.addEventListener('click', () => {
+      refreshBtn.classList.add('spinning');
+      refreshBtn.disabled = true;
+      fetchStatus().finally(() => {
+        setTimeout(() => {
+          refreshBtn.classList.remove('spinning');
+          refreshBtn.disabled = false;
+        }, 700);
+      });
+    });
   </script>
 </body>
 </html>
